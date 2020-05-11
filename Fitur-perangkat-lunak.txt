@@ -3,15 +3,11 @@ Fitur Perangkat Lunak
 
 admin
 
-1.  Bisa Melakukan Registrasi admin
-2.  Bisa mengubah data admin
-3.  Bisa melakukan pencarian buku
-4.  Bisa melakukan penambahan buku
+1.  Dapat melakukan penghapusan buku
+2.  Dapat mengubah data buku
+3.  Dapat melakukan pencarian buku
+4.  Dapat melakukan penambahan buku
 
 user biasa
 
-1.  Bisa melakukan Registrasi user biasa
-2.  Bisa update data user biasa
-2.  Bisa melakukan pencarian buku
-3.  Bisa melakukan peminjaman buku
-4.  Bisa melakukan pengembalian buku
+1. Dapat mencari buku
