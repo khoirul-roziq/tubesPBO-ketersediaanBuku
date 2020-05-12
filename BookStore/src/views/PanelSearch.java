@@ -5,6 +5,12 @@
  */
 package views;
 
+import inc.Database;
+import static inc.Database.con;
+import static inc.Database.stm;
+import java.sql.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -12,11 +18,26 @@ import javax.swing.table.DefaultTableModel;
  * @author asus
  */
 public class PanelSearch extends javax.swing.JPanel {
+    public DefaultTableModel model;
     /**
      * Creates new form PanelSearch
      */
-    public PanelSearch() {
+    public PanelSearch() throws SQLException{
         initComponents();
+        model = new DefaultTableModel();
+        tableBuku.setModel(model);
+        
+        model.addColumn("ISBN");
+        model.addColumn("Judul Buku");
+        model.addColumn("Penulis");
+        model.addColumn("Penerbit");
+        model.addColumn("Tahun Terbit");
+        model.addColumn("Tempat Terbit");
+        model.addColumn("Harga");
+        model.addColumn("Stock Tersedia");
+        model.addColumn("Lokasi");
+        
+        tampilkanTable("SELECT * FROM book");
     }
 
     /**
@@ -29,26 +50,16 @@ public class PanelSearch extends javax.swing.JPanel {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jTextField1 = new javax.swing.JTextField();
+        tableBuku = new javax.swing.JTable();
+        tfSearch = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
 
         setPreferredSize(new java.awt.Dimension(630, 500));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane1.setViewportView(jTable1);
+        tableBuku.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jScrollPane1.setViewportView(tableBuku);
 
         jLabel1.setFont(new java.awt.Font("Nirmala UI", 3, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(54, 33, 89));
@@ -57,6 +68,11 @@ public class PanelSearch extends javax.swing.JPanel {
 
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icons8_search_16px.png"))); // NOI18N
+        jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel3MouseClicked(evt);
+            }
+        });
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 2, 11)); // NOI18N
         jLabel2.setText("(Masukan judul buku, penerbit, atau nama penulis)");
@@ -70,13 +86,13 @@ public class PanelSearch extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(124, 124, 124)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 382, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(188, 188, 188)
-                        .addComponent(jLabel2)))
+                        .addComponent(jLabel2))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(124, 124, 124)
+                        .addComponent(tfSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 382, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(91, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
@@ -93,12 +109,22 @@ public class PanelSearch extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE))
+                    .addComponent(tfSearch, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE))
                 .addGap(54, 54, 54)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 291, Short.MAX_VALUE)
                 .addContainerGap())
         );
     }// </editor-fold>                        
+
+    private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {                                     
+        String search = tfSearch.getText();
+        tfSearch.setText("");
+        try {
+            tampilkanTable("SELECT * FROM book WHERE judul_buku LIKE '%"+search+"%' OR pengarang LIKE '%"+search+"%' OR penerbit LIKE '%"+search+"%'");
+        } catch (SQLException ex) {
+            Logger.getLogger(PanelSearch.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }                                    
 
 
     // Variables declaration - do not modify                     
@@ -106,7 +132,32 @@ public class PanelSearch extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTable tableBuku;
+    private javax.swing.JTextField tfSearch;
     // End of variables declaration                   
+public void tampilkanTable(String query) throws SQLException {
+        Database db = new Database();
+        model.getDataVector().removeAllElements();
+        model.fireTableDataChanged();
+        ResultSet rs = db.tampilBuku(query);  
+        try{
+            while(rs.next()){
+            Object[] data = new Object[9];
+            data[0]=rs.getString("isbn");
+            data[1]=rs.getString("judul_buku");
+            data[2]=rs.getString("pengarang");
+            data[3]=rs.getString("penerbit");
+            data[4]=rs.getString("tahun_terbit");
+            data[5]=rs.getString("tempat_terbit");
+            data[6]=rs.getString("harga");
+            data[7]=rs.getString("jumlah_stok");
+            data[8]=rs.getString("lokasi_penempatan");
+            model.addRow(data);
+         }   
+        }catch(SQLException e){
+            System.out.println("gagal");
+        }
+    }
+
+    
 }
