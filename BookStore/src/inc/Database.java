@@ -12,14 +12,16 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.*;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import views.PanelSearch;
 
 /**
  *
  * @author Muhammad Alfarizi
  */
 public class Database {
-    private static Connection con;
-    private static Statement stm;
+    public static Connection con;
+    public static Statement stm;
     private static ResultSet rs;
     
     public Database() throws SQLException{
@@ -37,5 +39,10 @@ public class Database {
             }
         }
         return valid;
+    }
+    
+    public ResultSet tampilBuku(String query) throws SQLException{
+        rs = stm.executeQuery(query);
+        return rs;
     }
 }
