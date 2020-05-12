@@ -13,13 +13,13 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author asus
+ * @author assus
  */
 public class Login extends javax.swing.JFrame {
     
     Database db;
         /**
-     * Creates new form login
+     * Creates news form login
      */
     public Login() {
         initComponents();
