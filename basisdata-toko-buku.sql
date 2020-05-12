@@ -44,7 +44,9 @@ CREATE TABLE `administrator` (
 --
 
 INSERT INTO `administrator` (`username`, `nama`, `jenis_kelamin`, `alamat`, `tanggal_lahir`, `password`) VALUES
-('Alfarizi', 'Muhammad Alfarizi Tazkia', 'L', 'Jakarta Timur', '2000-10-24 00:00:00.000000', '123456');
+('Alfarizi', 'Muhammad Alfarizi Tazkia', 'L', 'Jakarta Timur', '2000-10-24 00:00:00.000000', '123456'),
+('khoirul', 'Khoirul Roziq', 'L', 'Pelindung Jaya', '1999-12-17 00:00:00.000000', 'Khoirul123'),
+('rizqi', 'M. Khoirurrizqi', 'L', 'Bandar Lampung', '2000-10-20 00:00:00.000000', 'rizqi123');
 
 -- --------------------------------------------------------
 
