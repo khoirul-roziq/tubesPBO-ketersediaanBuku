@@ -23,6 +23,7 @@ public class Login extends javax.swing.JFrame {
      */
     public Login() {
         initComponents();
+        setTitle("Login Page");
     }
 
     /**
@@ -138,7 +139,11 @@ public class Login extends javax.swing.JFrame {
     }// </editor-fold>                        
 
     private void closeMousePressed(java.awt.event.MouseEvent evt) {                                   
-        new FrameAwal().setVisible(true);
+        try {
+            new FrameAwal().setVisible(true);
+        } catch (SQLException ex) {
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+        }
         this.dispose();// TODO add your handling code here:
     }                                  
 
@@ -159,7 +164,15 @@ public class Login extends javax.swing.JFrame {
         } catch (SQLException ex) {
             Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }                                                                        
+    }                                   
+
+    private void tfUsernameActionPerformed(java.awt.event.ActionEvent evt) {                                           
+        // TODO add your handling code here:
+    }                                          
+
+    private void bLoginActionPerformed(java.awt.event.ActionEvent evt) {                                       
+        // TODO add your handling code here:
+    }                                      
 
     /**
      * @param args the command line arguments
