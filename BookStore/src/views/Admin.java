@@ -304,6 +304,11 @@ public class Admin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void bSearchMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bSearchMousePressed
+        try {
+            sr.tampilkanTable("SELECT * FROM book");
+        } catch (SQLException ex) {
+            Logger.getLogger(Admin.class.getName()).log(Level.SEVERE, null, ex);
+        }
         setColor(bSearch);
         resetColor(bAdd);
         resetColor(bDelete);
@@ -316,6 +321,11 @@ public class Admin extends javax.swing.JFrame {
     }//GEN-LAST:event_bSearchMousePressed
 
     private void bAddMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bAddMousePressed
+        try {
+            ad.tampilkanTable();
+        } catch (SQLException ex) {
+            Logger.getLogger(Admin.class.getName()).log(Level.SEVERE, null, ex);
+        }
         resetColor(bSearch);
         setColor(bAdd);
         resetColor(bDelete);
@@ -328,6 +338,11 @@ public class Admin extends javax.swing.JFrame {
     }//GEN-LAST:event_bAddMousePressed
 
     private void bDeleteMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bDeleteMousePressed
+        try {
+            dl.tampilkanTable("SELECT * FROM book");
+        } catch (SQLException ex) {
+            Logger.getLogger(Admin.class.getName()).log(Level.SEVERE, null, ex);
+        }
         resetColor(bSearch);
         resetColor(bAdd);
         setColor(bDelete);
@@ -340,6 +355,11 @@ public class Admin extends javax.swing.JFrame {
     }//GEN-LAST:event_bDeleteMousePressed
 
     private void bUpdateMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bUpdateMousePressed
+        try {
+            up.tampilkanTable("SELECT * FROM book");
+        } catch (SQLException ex) {
+            Logger.getLogger(Admin.class.getName()).log(Level.SEVERE, null, ex);
+        }
         resetColor(bSearch);
         resetColor(bAdd);
         resetColor(bDelete);
