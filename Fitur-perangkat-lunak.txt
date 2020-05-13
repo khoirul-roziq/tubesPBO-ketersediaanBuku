@@ -1,13 +1,13 @@
-Fitur Perangkat Lunak
+Fitur Perangkat Lunak Book Store
 ----------------------------------------
 
-admin
+administrator
 
-1.  Dapat melakukan penghapusan buku
-2.  Dapat mengubah data buku
-3.  Dapat melakukan pencarian buku
-4.  Dapat melakukan penambahan buku
+-  Dapat melakukan penghapusan buku
+-  Dapat mengubah data buku
+-  Dapat melakukan pencarian buku
+-  Dapat melakukan penambahan buku
 
-user biasa
+guest
 
-1. Dapat mencari buku
+-  Dapat mencari buku
