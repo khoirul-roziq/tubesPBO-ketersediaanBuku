@@ -16,6 +16,7 @@ public class PanelAdd extends javax.swing.JPanel {
      */
     public PanelAdd() {
         initComponents();
+        
     }
 
     /**
@@ -27,30 +28,196 @@ public class PanelAdd extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tableBuku = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
+        jISBN = new javax.swing.JLabel();
+        tfISBN = new javax.swing.JTextField();
+        jJudul = new javax.swing.JLabel();
+        tfJudul = new javax.swing.JTextField();
+        jPenulis = new javax.swing.JLabel();
+        tfPenulis = new javax.swing.JTextField();
+        jPenerbit = new javax.swing.JLabel();
+        tfPenerbit = new javax.swing.JTextField();
+        jTahunT = new javax.swing.JLabel();
+        tfTahunT = new javax.swing.JTextField();
+        jTempatT = new javax.swing.JLabel();
+        tfTempatT = new javax.swing.JTextField();
+        jHarga = new javax.swing.JLabel();
+        tfHarga = new javax.swing.JTextField();
+        jStock = new javax.swing.JLabel();
+        tfStock = new javax.swing.JTextField();
+        jLokasi = new javax.swing.JLabel();
+        tfLokasi = new javax.swing.JTextField();
+        bAddData = new javax.swing.JLabel();
 
-        jLabel1.setText("Coming Soon Add");
+        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        setPreferredSize(new java.awt.Dimension(630, 500));
+
+        tableBuku.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jScrollPane1.setViewportView(tableBuku);
+
+        jLabel1.setFont(new java.awt.Font("Nirmala UI", 3, 36)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(54, 33, 89));
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("Add!");
+
+        jISBN.setForeground(new java.awt.Color(54, 33, 89));
+        jISBN.setText("ISBN");
+
+        jJudul.setForeground(new java.awt.Color(54, 33, 89));
+        jJudul.setText("Judul");
+
+        jPenulis.setForeground(new java.awt.Color(54, 33, 89));
+        jPenulis.setText("Penulis");
+
+        jPenerbit.setForeground(new java.awt.Color(54, 33, 89));
+        jPenerbit.setText("Penerbit");
+
+        jTahunT.setForeground(new java.awt.Color(54, 33, 89));
+        jTahunT.setText("Tahun Terbit");
+
+        jTempatT.setForeground(new java.awt.Color(54, 33, 89));
+        jTempatT.setText("Tempat Terbit");
+
+        jHarga.setForeground(new java.awt.Color(54, 33, 89));
+        jHarga.setText("Harga");
+
+        jStock.setForeground(new java.awt.Color(54, 33, 89));
+        jStock.setText("Stock Tersedia");
+
+        jLokasi.setForeground(new java.awt.Color(54, 33, 89));
+        jLokasi.setText("Lokasi");
+
+        bAddData.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        bAddData.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icons8_add_file_32px.png"))); // NOI18N
+        bAddData.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                bAddDataMousePressed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(236, 236, 236))
             .addGroup(layout.createSequentialGroup()
-                .addGap(249, 249, 249)
-                .addComponent(jLabel1)
-                .addContainerGap(297, Short.MAX_VALUE))
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jJudul, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jISBN, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPenulis, javax.swing.GroupLayout.Alignment.LEADING))
+                .addGap(25, 25, 25)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(tfISBN, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
+                    .addComponent(tfJudul)
+                    .addComponent(tfPenulis))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jTahunT, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPenerbit, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jTempatT, javax.swing.GroupLayout.Alignment.LEADING))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(tfPenerbit)
+                    .addComponent(tfTahunT)
+                    .addComponent(tfTempatT, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jStock, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jHarga, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLokasi, javax.swing.GroupLayout.Alignment.LEADING))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(tfHarga)
+                    .addComponent(tfStock)
+                    .addComponent(tfLokasi, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(bAddData, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(24, 24, 24))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(256, Short.MAX_VALUE)
+                .addGap(34, 34, 34)
                 .addComponent(jLabel1)
-                .addGap(230, 230, 230))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(tfISBN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jISBN))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(tfJudul, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jJudul))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(tfPenulis, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jPenulis)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(tfPenerbit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jPenerbit))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(tfTahunT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTahunT))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(tfTempatT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTempatT)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(tfHarga, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jHarga))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(tfStock, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jStock))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(tfLokasi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLokasi)))
+                    .addComponent(bAddData, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 291, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void bAddDataMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bAddDataMousePressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_bAddDataMousePressed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel bAddData;
+    private javax.swing.JLabel jHarga;
+    private javax.swing.JLabel jISBN;
+    private javax.swing.JLabel jJudul;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLokasi;
+    private javax.swing.JLabel jPenerbit;
+    private javax.swing.JLabel jPenulis;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel jStock;
+    private javax.swing.JLabel jTahunT;
+    private javax.swing.JLabel jTempatT;
+    private javax.swing.JTable tableBuku;
+    private javax.swing.JTextField tfHarga;
+    private javax.swing.JTextField tfISBN;
+    private javax.swing.JTextField tfJudul;
+    private javax.swing.JTextField tfLokasi;
+    private javax.swing.JTextField tfPenerbit;
+    private javax.swing.JTextField tfPenulis;
+    private javax.swing.JTextField tfStock;
+    private javax.swing.JTextField tfTahunT;
+    private javax.swing.JTextField tfTempatT;
     // End of variables declaration//GEN-END:variables
 }
