@@ -45,4 +45,7 @@ public class Database {
         rs = stm.executeQuery(query);
         return rs;
     }
+    public static void main(String args[]){
+        
+    }
 }
