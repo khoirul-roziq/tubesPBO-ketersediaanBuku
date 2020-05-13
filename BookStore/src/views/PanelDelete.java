@@ -5,18 +5,40 @@
  */
 package views;
 
+import inc.Database;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 
 /**
  *
  * @author asus
  */
 public class PanelDelete extends javax.swing.JPanel {
-
+    DefaultTableModel model;
     /**
      * Creates new form PanelDelete
      */
-    public PanelDelete() {
+    public PanelDelete() throws SQLException {
         initComponents();
+        model = new DefaultTableModel();
+        tableBuku.setModel(model);
+        
+        model.addColumn("ISBN");
+        model.addColumn("Judul Buku");
+        model.addColumn("Penulis");
+        model.addColumn("Penerbit");
+        model.addColumn("Tahun Terbit");
+        model.addColumn("Tempat Terbit");
+        model.addColumn("Harga");
+        model.addColumn("Stock Tersedia");
+        model.addColumn("Lokasi");
+        
+        tampilkanTable("SELECT * FROM book");
     }
 
     /**
@@ -37,75 +59,49 @@ public class PanelDelete extends javax.swing.JPanel {
         bDeleteData = new javax.swing.JLabel();
 
         setDoubleBuffered(false);
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         tableBuku.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jScrollPane1.setViewportView(tableBuku);
+
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 198, 630, 291));
+        add(tfSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(124, 113, 382, 31));
 
         jLabel1.setFont(new java.awt.Font("Nirmala UI", 3, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(54, 33, 89));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Delete!");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(242, 34, 152, -1));
 
         bSearch.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         bSearch.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icons8_search_16px.png"))); // NOI18N
         bSearch.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                bSearchMouseClicked(evt);
+            }
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 bSearchMousePressed(evt);
             }
         });
+        add(bSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 113, 17, 31));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 2, 11)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(54, 33, 89));
         jLabel2.setText("(Masukkan ISBN)");
         jLabel2.setToolTipText("");
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(277, 93, -1, -1));
 
         bDeleteData.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         bDeleteData.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icons8_delete_file_16px.png"))); // NOI18N
         bDeleteData.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                bDeleteDataMouseClicked(evt);
+            }
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 bDeleteDataMousePressed(evt);
             }
         });
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(124, 124, 124)
-                .addComponent(tfSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 382, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(bSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(bDeleteData)
-                .addContainerGap(81, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(236, 236, 236))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel2)
-                .addGap(272, 272, 272))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(34, 34, 34)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(bDeleteData, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(bSearch, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(tfSearch, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE)))
-                .addGap(54, 54, 54)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 291, Short.MAX_VALUE)
-                .addContainerGap())
-        );
+        add(bDeleteData, new org.netbeans.lib.awtextra.AbsoluteConstraints(533, 113, -1, 31));
     }// </editor-fold>//GEN-END:initComponents
 
     private void bDeleteDataMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bDeleteDataMousePressed
@@ -115,6 +111,45 @@ public class PanelDelete extends javax.swing.JPanel {
     private void bSearchMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bSearchMousePressed
         // TODO add your handling code here:
     }//GEN-LAST:event_bSearchMousePressed
+
+    private void bDeleteDataMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bDeleteDataMouseClicked
+       String isbn = tfSearch.getText();
+       
+        try {
+            Database db = new Database();
+            int konfirmasi = JOptionPane.showOptionDialog(this, 
+                    "Apa yakin menghapus data dengan ISBN "+isbn+"?", 
+                    "Hapus", 
+                    JOptionPane.YES_NO_OPTION, 
+                    JOptionPane.QUESTION_MESSAGE, null, null, null);
+                    if(konfirmasi == JOptionPane.YES_OPTION){
+                        db.hapusData(isbn);
+                        JOptionPane.showMessageDialog(null, "Data Berhasil Dihapus");
+                        tampilkanTable("SELECT * FROM book");
+                    }
+                    tfSearch.setText("");
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Data gagal dihapus");
+        }
+    }//GEN-LAST:event_bDeleteDataMouseClicked
+
+    private void bSearchMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bSearchMouseClicked
+        String isbn = tfSearch.getText();
+        if(isbn.isEmpty()){
+            try {
+                tampilkanTable("SELECT * FROM book");
+            } catch (SQLException ex) {
+                Logger.getLogger(PanelDelete.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }else{
+            try {
+            Database db = new Database();
+            tampilkanTable("SELECT * FROM book WHERE isbn = '"+isbn+"'");
+            tfSearch.setText("");
+        } catch (SQLException ex) {
+        }
+        }
+    }//GEN-LAST:event_bSearchMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -126,4 +161,28 @@ public class PanelDelete extends javax.swing.JPanel {
     private javax.swing.JTable tableBuku;
     private javax.swing.JTextField tfSearch;
     // End of variables declaration//GEN-END:variables
+
+    void tampilkanTable(String query) throws SQLException {
+        Database db = new Database();
+        model.getDataVector().removeAllElements();
+        model.fireTableDataChanged();
+        ResultSet rs = db.tampilBuku(query);  
+        try{
+            while(rs.next()){
+            Object[] data = new Object[9];
+            data[0]=rs.getString("isbn");
+            data[1]=rs.getString("judul_buku");
+            data[2]=rs.getString("pengarang");
+            data[3]=rs.getString("penerbit");
+            data[4]=rs.getString("tahun_terbit");
+            data[5]=rs.getString("tempat_terbit");
+            data[6]=rs.getString("harga");
+            data[7]=rs.getString("jumlah_stok");
+            data[8]=rs.getString("lokasi_penempatan");
+            model.addRow(data);
+         }   
+        }catch(SQLException e){
+            System.out.println("gagal");
+        }
+    }
 }
