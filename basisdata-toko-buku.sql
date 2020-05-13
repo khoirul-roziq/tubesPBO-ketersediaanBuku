@@ -56,7 +56,7 @@ INSERT INTO `administrator` (`username`, `nama`, `jenis_kelamin`, `alamat`, `tan
 
 CREATE TABLE `book` (
   `isbn` varchar(20) NOT NULL,
-  `judul_buku` varchar(30) NOT NULL,
+  `judul_buku` varchar(80) NOT NULL,
   `pengarang` varchar(50) NOT NULL,
   `penerbit` varchar(30) NOT NULL,
   `tahun_terbit` int(11) NOT NULL,
@@ -72,7 +72,10 @@ CREATE TABLE `book` (
 
 INSERT INTO `book` (`isbn`, `judul_buku`, `pengarang`, `penerbit`, `tahun_terbit`, `tempat_terbit`, `harga`, `jumlah_stok`, `lokasi_penempatan`) VALUES
 ('123-456-789-9', 'Percy Jackson', 'Rick Riordan', 'Mizan Fantasi', 2000, 'Swiss', 82000, 12, 'Lemari B'),
-('978-602-198-686-9', 'IPA Kelas 5', 'Irene', 'Erlangga', 2013, 'Jakarta', 80000, 20, 'Lemari A');
+('978-345-8532-93-9', 'ASnimasi Pendidikan Menggunakan Flash', 'Priyanto Hidayatullah', 'Informatika', 2011, 'Jakarta', 90000, 140, 'Lemari D'),
+('978-602-198-686-9', 'IPA Kelas 5', 'Irene', 'Erlangga', 2013, 'Jakarta', 80000, 20, 'Lemari A'),
+('978-602-250-262-3', 'Jejak-Jejak Cinta', 'Toni Raharjo', 'Gema Insani', 2015, 'Bandung', 45000, 200, 'Lemari C'),
+('978-602-8519-93-9', 'Pemrograman Database Delphi7', 'Abdul Kadir', 'Penerbit Andi', 2004, 'Malang', 65000, 350, 'Lemari D');
 
 --
 -- Indexes for dumped tables
