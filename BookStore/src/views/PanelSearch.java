@@ -58,8 +58,7 @@ public class PanelSearch extends javax.swing.JPanel {
 
         setPreferredSize(new java.awt.Dimension(630, 500));
 
-        tableBuku.setBackground(new java.awt.Color(204, 255, 255));
-        tableBuku.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
+        tableBuku.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jScrollPane1.setViewportView(tableBuku);
 
         jLabel1.setFont(new java.awt.Font("Nirmala UI", 3, 36)); // NOI18N
@@ -76,7 +75,8 @@ public class PanelSearch extends javax.swing.JPanel {
         });
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 2, 11)); // NOI18N
-        jLabel2.setText("(Masukan judul buku, penerbit, atau nama penulis)");
+        jLabel2.setForeground(new java.awt.Color(54, 33, 89));
+        jLabel2.setText("(Masukkan judul buku, penerbit, atau nama penulis)");
         jLabel2.setToolTipText("");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -93,8 +93,8 @@ public class PanelSearch extends javax.swing.JPanel {
                         .addGap(124, 124, 124)
                         .addComponent(tfSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 382, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(91, Short.MAX_VALUE))
+                        .addComponent(jLabel3)))
+                .addContainerGap(104, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
