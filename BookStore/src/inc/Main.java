@@ -5,6 +5,7 @@
  */
 package inc;
 
+import java.sql.SQLException;
 import views.FrameAwal;
 
 /**
@@ -16,7 +17,7 @@ public class Main {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SQLException{
         // TODO code application logic here
         FrameAwal frame = new FrameAwal();
         frame.setVisible(true);
