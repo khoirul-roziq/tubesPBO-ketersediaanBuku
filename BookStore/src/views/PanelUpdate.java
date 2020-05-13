@@ -5,17 +5,37 @@
  */
 package views;
 
+import inc.Database;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author asus
  */
 public class PanelUpdate extends javax.swing.JPanel {
-
+    DefaultTableModel model;
     /**
      * Creates new form PanelUpdate
      */
-    public PanelUpdate() {
+    public PanelUpdate() throws SQLException {
         initComponents();
+        model = new DefaultTableModel();
+        tableBuku.setModel(model);
+        
+        model.addColumn("ISBN");
+        model.addColumn("Judul Buku");
+        model.addColumn("Penulis");
+        model.addColumn("Penerbit");
+        model.addColumn("Tahun Terbit");
+        model.addColumn("Tempat Terbit");
+        model.addColumn("Harga");
+        model.addColumn("Stock Tersedia");
+        model.addColumn("Lokasi");
+        
+        tampilkanTable("SELECT * FROM book");
     }
 
     /**
@@ -49,147 +69,150 @@ public class PanelUpdate extends javax.swing.JPanel {
         jLokasi = new javax.swing.JLabel();
         tfLokasi = new javax.swing.JTextField();
         bUpdate = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         tableBuku.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jScrollPane1.setViewportView(tableBuku);
+
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 198, 621, 291));
 
         jLabel1.setFont(new java.awt.Font("Nirmala UI", 3, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(54, 33, 89));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Update!");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(233, 34, 152, -1));
 
         jISBN.setForeground(new java.awt.Color(54, 33, 89));
         jISBN.setText("ISBN");
+        add(jISBN, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 103, -1, -1));
+        add(tfISBN, new org.netbeans.lib.awtextra.AbsoluteConstraints(68, 100, 80, -1));
 
         jJudul.setForeground(new java.awt.Color(54, 33, 89));
         jJudul.setText("Judul");
+        add(jJudul, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 129, -1, -1));
+        add(tfJudul, new org.netbeans.lib.awtextra.AbsoluteConstraints(68, 126, 100, -1));
 
         jPenulis.setForeground(new java.awt.Color(54, 33, 89));
         jPenulis.setText("Penulis");
+        add(jPenulis, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 155, -1, -1));
+        add(tfPenulis, new org.netbeans.lib.awtextra.AbsoluteConstraints(68, 152, 100, -1));
 
         jPenerbit.setForeground(new java.awt.Color(54, 33, 89));
         jPenerbit.setText("Penerbit");
+        add(jPenerbit, new org.netbeans.lib.awtextra.AbsoluteConstraints(178, 103, -1, -1));
+        add(tfPenerbit, new org.netbeans.lib.awtextra.AbsoluteConstraints(263, 100, 100, -1));
 
         jTahunT.setForeground(new java.awt.Color(54, 33, 89));
         jTahunT.setText("Tahun Terbit");
+        add(jTahunT, new org.netbeans.lib.awtextra.AbsoluteConstraints(178, 129, -1, -1));
+        add(tfTahunT, new org.netbeans.lib.awtextra.AbsoluteConstraints(263, 126, 100, -1));
 
         jTempatT.setForeground(new java.awt.Color(54, 33, 89));
         jTempatT.setText("Tempat Terbit");
+        add(jTempatT, new org.netbeans.lib.awtextra.AbsoluteConstraints(178, 155, -1, -1));
+        add(tfTempatT, new org.netbeans.lib.awtextra.AbsoluteConstraints(263, 152, 100, -1));
 
         jHarga.setForeground(new java.awt.Color(54, 33, 89));
         jHarga.setText("Harga");
+        add(jHarga, new org.netbeans.lib.awtextra.AbsoluteConstraints(373, 103, -1, -1));
+        add(tfHarga, new org.netbeans.lib.awtextra.AbsoluteConstraints(461, 100, 100, -1));
 
         jStock.setForeground(new java.awt.Color(54, 33, 89));
         jStock.setText("Stock Tersedia");
+        add(jStock, new org.netbeans.lib.awtextra.AbsoluteConstraints(373, 129, -1, -1));
+        add(tfStock, new org.netbeans.lib.awtextra.AbsoluteConstraints(461, 126, 100, -1));
 
         jLokasi.setForeground(new java.awt.Color(54, 33, 89));
         jLokasi.setText("Lokasi");
+        add(jLokasi, new org.netbeans.lib.awtextra.AbsoluteConstraints(373, 155, -1, -1));
+        add(tfLokasi, new org.netbeans.lib.awtextra.AbsoluteConstraints(461, 152, 100, -1));
 
         bUpdate.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         bUpdate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icons8_update_file_32px.png"))); // NOI18N
+        bUpdate.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         bUpdate.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                bUpdateMouseClicked(evt);
+            }
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 bUpdateMousePressed(evt);
             }
         });
+        add(bUpdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(565, 100, 50, 72));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(236, 236, 236))
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jJudul, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jISBN, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPenulis, javax.swing.GroupLayout.Alignment.LEADING))
-                .addGap(25, 25, 25)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(tfISBN, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
-                    .addComponent(tfJudul)
-                    .addComponent(tfPenulis))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jTahunT, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPenerbit, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTempatT, javax.swing.GroupLayout.Alignment.LEADING))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(tfPenerbit)
-                    .addComponent(tfTahunT)
-                    .addComponent(tfTempatT, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jStock, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jHarga, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLokasi, javax.swing.GroupLayout.Alignment.LEADING))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(tfHarga)
-                    .addComponent(tfStock)
-                    .addComponent(tfLokasi, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(bUpdate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(24, 24, 24))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(34, 34, 34)
-                .addComponent(jLabel1)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(tfISBN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jISBN))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(tfJudul, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jJudul))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(tfPenulis, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jPenulis)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(tfPenerbit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jPenerbit))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(tfTahunT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTahunT))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(tfTempatT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTempatT)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(tfHarga, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jHarga))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(tfStock, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jStock))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(tfLokasi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLokasi)))
-                    .addComponent(bUpdate, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 291, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icons8_search_16px.png"))); // NOI18N
+        jLabel3.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(204, 204, 204), new java.awt.Color(153, 153, 153), null, null));
+        jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel3MouseClicked(evt);
+            }
+        });
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 100, 20, 20));
     }// </editor-fold>//GEN-END:initComponents
 
     private void bUpdateMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bUpdateMousePressed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_bUpdateMousePressed
+
+    private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
+        String isbn = tfISBN.getText();
+        
+        try {
+            Database db = new Database();
+            ResultSet rs = db.tampilBuku("SELECT * FROM book WHERE isbn = '"+isbn+"'");
+            while(rs.next()){
+                tfJudul.setText(rs.getString("judul_buku"));
+                tfLokasi.setText(rs.getString("lokasi_penempatan"));
+                tfPenerbit.setText(rs.getString("penerbit"));
+                tfPenulis.setText(rs.getString("pengarang"));
+                tfStock.setText(rs.getString("jumlah_stok"));
+                tfTahunT.setText(rs.getString("tahun_terbit"));
+                tfTempatT.setText(rs.getString("tempat_terbit"));
+                tfHarga.setText(rs.getString("harga"));
+            }
+        } catch (SQLException ex) {
+        }
+        
+    }//GEN-LAST:event_jLabel3MouseClicked
+
+    private void bUpdateMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bUpdateMouseClicked
+        String isbn = tfISBN.getText();
+        String judul = tfJudul.getText();
+        String lokasi = tfLokasi.getText();
+        String penerbit = tfPenerbit.getText();
+        String penulis = tfPenulis.getText();
+        String stock = tfStock.getText();
+        String tahun = tfTahunT.getText();
+        String tempat = tfTempatT.getText();
+        String harga = tfHarga.getText();
+
+        try{
+            Database db = new Database();
+            int konfirmasi = JOptionPane.showOptionDialog(this, 
+            "Apa yakin mengubah data dengan ISBN "+isbn+"?", 
+            "Ubah", 
+            JOptionPane.YES_NO_OPTION, 
+            JOptionPane.QUESTION_MESSAGE, null, null, null);
+            if(konfirmasi == JOptionPane.YES_OPTION){
+                db.updateData(isbn, judul, lokasi, penerbit, penulis, stock, tahun, tempat, harga);
+                JOptionPane.showMessageDialog(null, "Data Berhasil Diubah");
+                tampilkanTable("SELECT * FROM book");
+                tfISBN.setText("");
+                tfJudul.setText("");
+                tfLokasi.setText("");
+                tfPenerbit.setText("");
+                tfPenulis.setText("");
+                tfStock.setText("");
+                tfTahunT.setText("");
+                tfTempatT.setText("");
+                tfHarga.setText("");
+        }                   
+        }catch (SQLException ex) {
+        }
+    }//GEN-LAST:event_bUpdateMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -198,6 +221,7 @@ public class PanelUpdate extends javax.swing.JPanel {
     private javax.swing.JLabel jISBN;
     private javax.swing.JLabel jJudul;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLokasi;
     private javax.swing.JLabel jPenerbit;
     private javax.swing.JLabel jPenulis;
@@ -216,4 +240,27 @@ public class PanelUpdate extends javax.swing.JPanel {
     private javax.swing.JTextField tfTahunT;
     private javax.swing.JTextField tfTempatT;
     // End of variables declaration//GEN-END:variables
+void tampilkanTable(String query) throws SQLException {
+        Database db = new Database();
+        model.getDataVector().removeAllElements();
+        model.fireTableDataChanged();
+        ResultSet rs = db.tampilBuku(query);  
+        try{
+            while(rs.next()){
+            Object[] data = new Object[9];
+            data[0]=rs.getString("isbn");
+            data[1]=rs.getString("judul_buku");
+            data[2]=rs.getString("pengarang");
+            data[3]=rs.getString("penerbit");
+            data[4]=rs.getString("tahun_terbit");
+            data[5]=rs.getString("tempat_terbit");
+            data[6]=rs.getString("harga");
+            data[7]=rs.getString("jumlah_stok");
+            data[8]=rs.getString("lokasi_penempatan");
+            model.addRow(data);
+         }   
+        }catch(SQLException e){
+            System.out.println("gagal");
+        }
+    }
 }
