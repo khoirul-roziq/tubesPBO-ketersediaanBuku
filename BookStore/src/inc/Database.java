@@ -76,5 +76,16 @@ public class Database {
         query = "UPDATE book SET jumlah_stok = "+stock+" WHERE isbn='"+isbn+"'";
         stm.execute(query);
     }
+    
+    public boolean isAvailable(String isbn) throws SQLException{
+        String query = "SELECT COUNT(judul_buku) FROM book WHERE isbn = '"+isbn+"'";
+        rs = stm.executeQuery(query);
+        String sum="";
+        while(rs.next()){
+            sum = rs.getString("COUNT(judul_buku)");
+        }
+        if(sum.equals("0"))return false;
+        else return true;
+    }
 
 }
