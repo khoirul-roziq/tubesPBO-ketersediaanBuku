@@ -115,19 +115,24 @@ public class PanelDelete extends javax.swing.JPanel {
     private void bDeleteDataMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bDeleteDataMouseClicked
        String isbn = tfSearch.getText();
        
+       
         try {
             Database db = new Database();
-            int konfirmasi = JOptionPane.showOptionDialog(this, 
-                    "Apa yakin menghapus data dengan ISBN "+isbn+"?", 
-                    "Hapus", 
-                    JOptionPane.YES_NO_OPTION, 
-                    JOptionPane.QUESTION_MESSAGE, null, null, null);
-                    if(konfirmasi == JOptionPane.YES_OPTION){
-                        db.hapusData(isbn);
-                        JOptionPane.showMessageDialog(null, "Data Berhasil Dihapus");
-                        tampilkanTable("SELECT * FROM book");
-                    }
-                    tfSearch.setText("");
+            if(db.isAvailable(isbn)){
+                int konfirmasi = JOptionPane.showOptionDialog(this, 
+                "Apa yakin menghapus data dengan ISBN "+isbn+"?", 
+                "Hapus", 
+                JOptionPane.YES_NO_OPTION, 
+                JOptionPane.QUESTION_MESSAGE, null, null, null);
+                if(konfirmasi == JOptionPane.YES_OPTION){
+                db.hapusData(isbn);
+                JOptionPane.showMessageDialog(null, "Data Berhasil Dihapus");
+                tampilkanTable("SELECT * FROM book");
+                }
+            }else{
+                JOptionPane.showMessageDialog(null, "isbn tidak ditemukan");
+            }
+            tfSearch.setText("");
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Data gagal dihapus");
         }
@@ -144,8 +149,9 @@ public class PanelDelete extends javax.swing.JPanel {
         }else{
             try {
             Database db = new Database();
+            if(db.isAvailable(isbn)){
             tampilkanTable("SELECT * FROM book WHERE isbn = '"+isbn+"'");
-            tfSearch.setText("");
+            }else JOptionPane.showMessageDialog(null, "isbn tidak ditemukan");
         } catch (SQLException ex) {
         }
         }
