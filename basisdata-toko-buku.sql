@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.0.1
+-- version 4.8.3
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 13, 2020 at 08:42 PM
--- Server version: 10.3.15-MariaDB
--- PHP Version: 7.3.6
+-- Generation Time: May 15, 2020 at 08:51 AM
+-- Server version: 10.1.37-MariaDB
+-- PHP Version: 7.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -21,8 +21,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `toko_buku`
 --
-CREATE DATABASE IF NOT EXISTS `toko_buku` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
-USE `toko_buku`;
 
 -- --------------------------------------------------------
 
@@ -71,8 +69,13 @@ CREATE TABLE `book` (
 --
 
 INSERT INTO `book` (`isbn`, `judul_buku`, `pengarang`, `penerbit`, `tahun_terbit`, `tempat_terbit`, `harga`, `jumlah_stok`, `lokasi_penempatan`) VALUES
+('123-223-2113-34-9', 'Belajar membaca', 'Miftah', 'child store', 2008, 'Bandung', 30000, 100, 'Lemari A'),
+('123-223-2343-34-9', 'Programing', 'Khoirul amri', 'Nusa Jaya', 2018, 'Lampung', 100000, 50, 'Lemari D'),
 ('123-456-789-9', 'Percy Jackson', 'Rick Riordan', 'Mizan Fantasi', 2000, 'Swiss', 82000, 12, 'Lemari B'),
-('978-345-8532-93-9', 'ASnimasi Pendidikan Menggunakan Flash', 'Priyanto Hidayatullah', 'Informatika', 2011, 'Jakarta', 90000, 140, 'Lemari D'),
+('223-221-2343-34-9', 'Bahasa C++', 'M Roziq ', 'Infokom', 2020, 'Lampung', 85000, 230, 'Lemari D'),
+('234-432-555-9', 'Love Store', 'Lauren', 'Stories', 2019, 'Singapore', 76000, 500, 'Lemari B'),
+('943-123-321-9', 'Bahasa java', 'M Ulil Amri', 'InfoJaya', 2013, 'Jakarta', 90000, 134, 'Lemari D'),
+('978-345-8532-93-9', 'Animasi Pendidikan Menggunakan Flash', 'Priyanto Hidayatullah', 'Informatika', 2011, 'Jakarta', 90000, 140, 'Lemari D'),
 ('978-602-198-686-9', 'IPA Kelas 5', 'Irene', 'Erlangga', 2013, 'Jakarta', 80000, 20, 'Lemari A'),
 ('978-602-250-262-3', 'Jejak-Jejak Cinta', 'Toni Raharjo', 'Gema Insani', 2015, 'Bandung', 45000, 200, 'Lemari C'),
 ('978-602-8519-93-9', 'Pemrograman Database Delphi7', 'Abdul Kadir', 'Penerbit Andi', 2004, 'Malang', 65000, 350, 'Lemari D');
