@@ -162,17 +162,19 @@ public class PanelUpdate extends javax.swing.JPanel {
         
         try {
             Database db = new Database();
-            ResultSet rs = db.tampilBuku("SELECT * FROM book WHERE isbn = '"+isbn+"'");
-            while(rs.next()){
-                tfJudul.setText(rs.getString("judul_buku"));
-                tfLokasi.setText(rs.getString("lokasi_penempatan"));
-                tfPenerbit.setText(rs.getString("penerbit"));
-                tfPenulis.setText(rs.getString("pengarang"));
-                tfStock.setText(rs.getString("jumlah_stok"));
-                tfTahunT.setText(rs.getString("tahun_terbit"));
-                tfTempatT.setText(rs.getString("tempat_terbit"));
-                tfHarga.setText(rs.getString("harga"));
-            }
+            if(db.isAvailable(isbn)){
+                ResultSet rs = db.tampilBuku("SELECT * FROM book WHERE isbn = '"+isbn+"'");
+                while(rs.next()){
+                    tfJudul.setText(rs.getString("judul_buku"));
+                    tfLokasi.setText(rs.getString("lokasi_penempatan"));
+                    tfPenerbit.setText(rs.getString("penerbit"));
+                    tfPenulis.setText(rs.getString("pengarang"));
+                    tfStock.setText(rs.getString("jumlah_stok"));
+                    tfTahunT.setText(rs.getString("tahun_terbit"));
+                    tfTempatT.setText(rs.getString("tempat_terbit"));
+                    tfHarga.setText(rs.getString("harga"));
+                }
+            }else JOptionPane.showMessageDialog(null, "isbn tidak ditemukan");
         } catch (SQLException ex) {
         }
         
@@ -191,25 +193,28 @@ public class PanelUpdate extends javax.swing.JPanel {
 
         try{
             Database db = new Database();
-            int konfirmasi = JOptionPane.showOptionDialog(this, 
-            "Apa yakin mengubah data dengan ISBN "+isbn+"?", 
-            "Ubah", 
-            JOptionPane.YES_NO_OPTION, 
-            JOptionPane.QUESTION_MESSAGE, null, null, null);
-            if(konfirmasi == JOptionPane.YES_OPTION){
-                db.updateData(isbn, judul, lokasi, penerbit, penulis, stock, tahun, tempat, harga);
-                JOptionPane.showMessageDialog(null, "Data Berhasil Diubah");
-                tampilkanTable("SELECT * FROM book");
-                tfISBN.setText("");
-                tfJudul.setText("");
-                tfLokasi.setText("");
-                tfPenerbit.setText("");
-                tfPenulis.setText("");
-                tfStock.setText("");
-                tfTahunT.setText("");
-                tfTempatT.setText("");
-                tfHarga.setText("");
-        }                   
+            if(db.isAvailable(isbn)){
+                int konfirmasi = JOptionPane.showOptionDialog(this, 
+                "Apa yakin mengubah data dengan ISBN "+isbn+"?", 
+                "Ubah", 
+                JOptionPane.YES_NO_OPTION, 
+                JOptionPane.QUESTION_MESSAGE, null, null, null);
+                if(konfirmasi == JOptionPane.YES_OPTION){
+                    db.updateData(isbn, judul, lokasi, penerbit, penulis, stock, tahun, tempat, harga);
+                    JOptionPane.showMessageDialog(null, "Data Berhasil Diubah");
+                    tampilkanTable("SELECT * FROM book");
+                    tfISBN.setText("");
+                    tfJudul.setText("");
+                    tfLokasi.setText("");
+                    tfPenerbit.setText("");
+                    tfPenulis.setText("");
+                    tfStock.setText("");
+                    tfTahunT.setText("");
+                    tfTempatT.setText("");
+                    tfHarga.setText("");
+                    tampilkanTable("SELECT * FROM book");
+                 }                   
+            }else JOptionPane.showMessageDialog(null, "isbn tidak ditemukan");
         }catch (SQLException ex) {
         }
     }//GEN-LAST:event_bUpdateMouseClicked
